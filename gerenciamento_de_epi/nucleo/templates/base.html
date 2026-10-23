@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/css.css' %}">
+    <title>{% block title %}Controle de EPI{% endblock %}</title>
+</head>
+<body>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="dashboard-container">
+        
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="sidebar-title">Nome Empresa</div>
+            <nav class="sidebar-menu">
+                <!-- Certifique-se de alterar as tags abaixo com o name das suas urls -->
+                <a href="{% url 'home' %}" class="menu-item">Início</a>
+                <a href="{% url 'colaboradores'%}" class="menu-item">Colaboradores</a>
+                 <a href="{% url 'emprestimos'%}" class="menu-item">Empréstimos</a>
+                <!-- <a href="#" class="menu-item">EPI</a> -->
+            </nav>
+        </aside>
+
+    
+        <div class="main-layout">
+            
+            <header class="main-header">
+                <!-- Imagem Clicável que redireciona para o Início -->
+                <a href="{% url 'home' %}" class="header-logo-link">
+                    <img src="{% static 'css/logo.png' %}" alt="Logo Início" class="header-logo">
+                </a>
+                <div class="user-info">
+                    <span>Olá, Usuário</span>
+                    <button class="btn-logout">Sair</button>
+                </div>
+            </header>
+
+            <!-- CONTEÚDO DINÂMICO-->
+            <main class="content-body">
+                {% block content %}
+                <!-- conteudo das outra spáginas -->
+                {% endblock %}
+            </main>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
