@@ -1,0 +1,24 @@
+{% extends "nucleo/base.html" %}
+{% block conteudo %}
+<br>
+<h1>Novo empréstimo</h1>
+<br>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h2>EPIs emprestados</h2>
+    {{ formset.management_form }}
+    {{ formset.non_form_errors }}
+    {% for f in formset %}
+    <div>
+        {{ f.non_field_errors }}
+        {{ f.as_p }}
+    </div>
+    <hr>
+    {% endfor %}
+
+    <button type="submit">Registrar empréstimo</button>
+</form>
+{% endblock %}

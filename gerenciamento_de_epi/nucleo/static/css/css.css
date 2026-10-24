@@ -8,19 +8,25 @@
 
 body {
     background-color: #f4f6f9;
-    color: #333;
+    color: #fdf9f9;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* Container que divide a tela entre Sidebar e Conteúdo */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
+    background-color: #0d2944;
 }
 
 /* Estilização da Barra Lateral */
 .sidebar {
     width: 250px;
-    background-color: #2c3e50;
+    background-color: #3b4c5e;
     color: #ecf0f1;
     padding: 20px 0;
     display: flex;
@@ -40,6 +46,7 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 15px;
+    
 }
 
 .menu-item {
@@ -61,6 +68,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
 }
 
 /* Estilização do Header */
@@ -119,3 +127,19 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     min-height: 300px; /* Garante um espaço em branco inicial confortável */
 }
+
+.conteudo{
+    color: black
+}
+
+.btn-novo{
+    background-color: #005564;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+}
+

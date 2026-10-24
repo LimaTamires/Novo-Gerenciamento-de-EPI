@@ -17,9 +17,7 @@
             <a href="{% url 'nucleo:home' %}" class="menu-item">Início</a>
             <a href="{% url 'nucleo:colaborador_lista' %}" class="menu-item">Colaboradores</a>
             <a href="{% url 'nucleo:epi_lista' %}" class="menu-item">EPI</a>
-            <!-- Empréstimos: 
-            <a href="{ % url 'nucleo:emprestimos' % }" class="menu-item">Empréstimos</a>
-            -->
+            <a href="{% url 'nucleo:emprestimo_lista' %}" class="menu-item">Empréstimos</a>
         </nav>
 
     
@@ -28,7 +26,7 @@
             <header class="main-header">
                 <!-- Imagem Clicável que redireciona para o Início -->
                 <a href="{% url 'nucleo:home' %}" class="header-logo-link">
-                    <img src="{% static 'css/logo.png' %}" alt="Logo Início" class="header-logo">
+                    <img src="{% static 'logo.png' %}" alt="Logo Início" class="header-logo">
                 </a>
                 <div class="user-info">
                     <span>Olá, Usuário</span>

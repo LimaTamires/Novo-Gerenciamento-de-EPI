@@ -1,8 +1,9 @@
 {% extends "nucleo/base.html" %}
 {% block conteudo %}
 <h1>EPIs</h1>
-<a href="{% url 'nucleo:epi_novo' %}">Novo EPI</a>
-
+<br>
+<a class="btn-novo" href="{% url 'nucleo:epi_novo' %}">Novo EPI</a>
+<br> <br>
 <table border="1" cellpadding="6">
     <tr><th>Nome</th><th>Categoria</th><th>Estoque</th><th>Ações</th></tr>
     {% for e in epis %}
