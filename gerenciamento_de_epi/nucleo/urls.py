@@ -1,24 +1,19 @@
-"""
-URL configuration for gerenciamento_de_epi project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from . import views
 from django.urls import path
+from . import views
+from django.views.generic import RedirectView
+
+
+app_name = "nucleo"
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('1', views.emprestimos, name='emprestimos'),
-    path('colaboradores', views.colaboradores, name='colaboradores'),
+    path("colaboradores/", views.ColaboradorList.as_view(), name="colaborador_lista"),
+    path("colaboradores/novo/", views.ColaboradorCreate.as_view(), name="colaborador_novo"),
+    path("colaboradores/<int:pk>/editar/", views.ColaboradorUpdate.as_view(), name="colaborador_editar"),
+    path("colaboradores/<int:pk>/excluir/", views.ColaboradorDelete.as_view(), name="colaborador_excluir"),
+
+    path("epis/", views.EPIList.as_view(), name="epi_lista"),
+    path("epis/novo/", views.EPICreate.as_view(), name="epi_novo"),
+    path("epis/<int:pk>/editar/", views.EPIUpdate.as_view(), name="epi_editar"),
+    path("epis/<int:pk>/excluir/", views.EPIDelete.as_view(), name="epi_excluir"),
+    path("", views.home, name="home"),
 ]

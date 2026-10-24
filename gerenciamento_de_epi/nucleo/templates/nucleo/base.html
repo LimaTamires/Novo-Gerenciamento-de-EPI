@@ -13,23 +13,21 @@
     <div class="dashboard-container">
         
         <!-- BARRA LATERAL (SIDEBAR) -->
-        <aside class="sidebar">
-            <div class="sidebar-title">Nome Empresa</div>
-            <nav class="sidebar-menu">
-                <!-- Certifique-se de alterar as tags abaixo com o name das suas urls -->
-                <a href="{% url 'home' %}" class="menu-item">Início</a>
-                <a href="{% url 'colaboradores'%}" class="menu-item">Colaboradores</a>
-                 <a href="{% url 'emprestimos'%}" class="menu-item">Empréstimos</a>
-                <!-- <a href="#" class="menu-item">EPI</a> -->
-            </nav>
-        </aside>
+        <nav class="sidebar-menu">
+            <a href="{% url 'nucleo:home' %}" class="menu-item">Início</a>
+            <a href="{% url 'nucleo:colaborador_lista' %}" class="menu-item">Colaboradores</a>
+            <a href="{% url 'nucleo:epi_lista' %}" class="menu-item">EPI</a>
+            <!-- Empréstimos: 
+            <a href="{ % url 'nucleo:emprestimos' % }" class="menu-item">Empréstimos</a>
+            -->
+        </nav>
 
     
         <div class="main-layout">
             
             <header class="main-header">
                 <!-- Imagem Clicável que redireciona para o Início -->
-                <a href="{% url 'home' %}" class="header-logo-link">
+                <a href="{% url 'nucleo:home' %}" class="header-logo-link">
                     <img src="{% static 'css/logo.png' %}" alt="Logo Início" class="header-logo">
                 </a>
                 <div class="user-info">
@@ -39,10 +37,8 @@
             </header>
 
             <!-- CONTEÚDO DINÂMICO-->
-            <main class="content-body">
-                {% block content %}
-                <!-- conteudo das outra spáginas -->
-                {% endblock %}
+            <main class="conteudo">
+                 {% block conteudo %}{% endblock %}
             </main>
 
         </div>

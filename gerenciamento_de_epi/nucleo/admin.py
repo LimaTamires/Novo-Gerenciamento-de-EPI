@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import Setor, Colaborador, EPICategoria, EPI
 
-# Register your models here.
+admin.site.register([Setor, Colaborador, EPICategoria, EPI])

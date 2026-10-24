@@ -1,0 +1,23 @@
+{% extends "nucleo/base.html" %}
+{% block conteudo %}
+<h1>Colaboradores</h1>
+<a href="{% url 'nucleo:colaborador_novo' %}">Novo colaborador</a>
+
+<table border="1" cellpadding="6">
+    <tr><th>Nome</th><th>CPF</th><th>Setor</th><th>Ativo</th><th>Ações</th></tr>
+    {% for c in colaboradores %}
+    <tr>
+        <td>{{ c.nome }}</td>
+        <td>{{ c.cpf }}</td>
+        <td>{{ c.setor }}</td>
+        <td>{{ c.status|yesno:"Sim,Não" }}</td>
+        <td>
+            <a href="{% url 'nucleo:colaborador_editar' c.pk %}">Editar</a>
+            <a href="{% url 'nucleo:colaborador_excluir' c.pk %}">Excluir</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">Nenhum colaborador cadastrado.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "nucleo/base.html" %}
+{% block conteudo %}
+<h1>EPIs</h1>
+<a href="{% url 'nucleo:epi_novo' %}">Novo EPI</a>
+
+<table border="1" cellpadding="6">
+    <tr><th>Nome</th><th>Categoria</th><th>Estoque</th><th>Ações</th></tr>
+    {% for e in epis %}
+    <tr>
+        <td>{{ e.nome }}</td>
+        <td>{{ e.categoria }}</td>
+        <td>{{ e.estoque }}</td>
+        <td>
+            <a href="{% url 'nucleo:epi_editar' e.pk %}">Editar</a>
+            <a href="{% url 'nucleo:epi_excluir' e.pk %}">Excluir</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nenhum EPI cadastrado.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
