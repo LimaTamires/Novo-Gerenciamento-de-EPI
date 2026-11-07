@@ -5,12 +5,13 @@ from .models import Colaborador, EPI, ItemEmprestimo, Emprestimo
 from django.shortcuts import render, redirect
 from django.db import transaction
 from django.db.models import F
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 def home(req):
     return render(req, 'nucleo/base.html')
 
 # ---------- Colaboradores ----------
-class ColaboradorList(CreateView):
+class ColaboradorList(PermissionRequiredMixin, CreateView):
     model = Colaborador
     form_class = ColaboradorForm
     template_name = "nucleo/colaborador_lista.html"
@@ -21,8 +22,14 @@ class ColaboradorList(CreateView):
         context["colaboradores"] = Colaborador.objects.select_related("setor")
         return context
 
+    def get_permission_required(self):
+        if self.request.method == "POST":
+            return ["nucleo.add_colaborador"]
+        return ["nucleo.view_colaborador"]
 
-class ColaboradorCreate(CreateView):
+
+class ColaboradorCreate(PermissionRequiredMixin, CreateView):
+    permission_required = "nucleo.add_colaborador"
     model = Colaborador
     form_class = ColaboradorForm
     template_name = "nucleo/form.html"
@@ -30,7 +37,8 @@ class ColaboradorCreate(CreateView):
     extra_context = {"titulo": "Novo colaborador"}
 
 
-class ColaboradorUpdate(UpdateView):
+class ColaboradorUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = "nucleo.change_colaborador"
     model = Colaborador
     form_class = ColaboradorForm
     template_name = "nucleo/form.html"
@@ -38,7 +46,8 @@ class ColaboradorUpdate(UpdateView):
     extra_context = {"titulo": "Editar colaborador"}
 
 
-class ColaboradorDelete(DeleteView):
+class ColaboradorDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = "nucleo.delete_colaborador"
     model = Colaborador
     template_name = "nucleo/confirmar_exclusao.html"
     success_url = reverse_lazy("nucleo:colaborador_lista")
@@ -56,8 +65,13 @@ class EPIList(CreateView):
         context["epis"] = EPI.objects.select_related("categoria")
         return context
 
+    def get_permission_required(self):
+        if self.request.method == "POST":
+            return ["nucleo.add_epi"]
+        return ["nucleo.view_epi"]
 
-class EPICreate(CreateView):
+class EPICreate(PermissionRequiredMixin, CreateView):
+    permission_required = "nucleo.add_epi"
     model = EPI
     form_class = EPIForm
     template_name = "nucleo/form.html"
@@ -65,7 +79,8 @@ class EPICreate(CreateView):
     extra_context = {"titulo": "Novo EPI"}
 
 
-class EPIUpdate(UpdateView):
+class EPIUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = "nucleo.change_epi"
     model = EPI
     form_class = EPIForm
     template_name = "nucleo/form.html"
@@ -73,13 +88,15 @@ class EPIUpdate(UpdateView):
     extra_context = {"titulo": "Editar EPI"}
 
 
-class EPIDelete(DeleteView):
+class EPIDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = "nucleo.delete_epi"
     model = EPI
     template_name = "nucleo/confirmar_exclusao.html"
     success_url = reverse_lazy("nucleo:epi_lista")
 
 # ---------- Empréstimos ----------
-class EmprestimoList(ListView):
+class EmprestimoList(PermissionRequiredMixin, ListView):
+    permission_required = "nucleo.view_itememprestimo"
     model = ItemEmprestimo
     template_name = "nucleo/emprestimo_lista.html"
     context_object_name = "itens"
@@ -92,7 +109,8 @@ class EmprestimoList(ListView):
         )
 
 
-class EmprestimoCreate(CreateView):
+class EmprestimoCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ["nucleo.add_emprestimo", "nucleo.add_itememprestimo"]
     model = Emprestimo
     form_class = EmprestimoForm
     template_name = "nucleo/emprestimo_form.html"
@@ -121,7 +139,8 @@ class EmprestimoCreate(CreateView):
         return redirect(self.success_url)
 
 
-class ItemDevolver(UpdateView):
+class ItemDevolver(PermissionRequiredMixin, UpdateView):
+    permission_required = "nucleo.change_itememprestimo"
     model = ItemEmprestimo
     form_class = DevolucaoForm
     template_name = "nucleo/form.html"

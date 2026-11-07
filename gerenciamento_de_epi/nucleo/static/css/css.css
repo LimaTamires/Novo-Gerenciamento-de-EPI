@@ -1,4 +1,61 @@
-/* Reset Básico */
+.user-info form {
+    margin: 0;
+}
+
+.logo.login{
+    margin-top: 50px;
+
+}
+.botao {
+    width: 50%;
+    margin-top: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #020202;
+    background: lightblue;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+
+.pagina-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f4f5f9;
+}
+
+.login-caixa {
+    width: 100%;
+    max-width: 380px;
+    padding: 32px;
+}
+
+.login-caixa h1 {
+    margin-top: 0;
+    text-align: center;
+    color: var(--azul-escuro);
+}
+
+.login-caixa input[type="text"],
+.login-caixa input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.erro {
+    color: #991b1b;
+    background: #fee2e2;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -119,7 +176,7 @@ a {
     flex: 1;
 }
 
-/* Estilo para a caixa/card em branco que você vai preencher */
+/* Estilo para a caixa/card em branco*/
 .content-card {
     background-color: #ffffff;
     border-radius: 8px;

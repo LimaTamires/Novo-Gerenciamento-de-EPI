@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Controle de EPI</title>
+    <link rel="stylesheet" href="{% static 'css/css.css' %}">
+</head>
+<body class="pagina-login">
+    <div class="logo_login">
+        <img src="{% static 'logo.png' %}"  alt="Logo Início"    class="header-logo">
+    </div>
+    <div class="cartao login-caixa">
+        <h1>LOG IN</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <p class="erro">Usuário ou senha inválidos.</p>
+            {% endif %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}">
+            <button type="submit" class="botao botao-primario">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

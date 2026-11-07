@@ -30,7 +30,10 @@
                 </a>
                 <div class="user-info">
                     <span>Olá, Usuário</span>
-                    <button class="btn-logout">Sair</button>
+                    <form method="post" action="{% url 'nucleo:logout' %}" style="display:inline">
+                         {% csrf_token %}
+                         <button class="btn-logout">Sair</button>
+                    </form>
                 </div>
             </header>
 
